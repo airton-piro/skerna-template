@@ -1,0 +1,84 @@
+{
+    "name": "skerna-template",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/skerna-template/skerna_template",
+    "targets": {
+        "docs": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "pydoc-markdown -p skerna_template --render-toc > docs/source/api.md",
+                "cwd": "apps/skerna-template"
+            }
+        },
+        "lock": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "poetry lock --no-update",
+                "cwd": "apps/skerna-template"
+            }
+        },
+        "add": {
+            "executor": "@hermes/python:add",
+            "options": {}
+        },
+        "update": {
+            "executor": "@hermes/python:update",
+            "options": {}
+        },
+        "remove": {
+            "executor": "@hermes/python:remove",
+            "options": {}
+        },
+        "build": {
+            "executor": "@hermes/python:build",
+            "outputs": ["{projectRoot}/dist"],
+            "options": {
+                "outputPath": "apps/skerna-template/dist",
+                "publish": true,
+                "lockedVersions": true,
+                "bundleLocalDependencies": true
+            }
+        },
+        "install": {
+            "executor": "@hermes/python:install",
+            "options": {
+                "silent": false,
+                "args": "",
+                "cacheDir": ".cache/pypoetry",
+                "verbose": false,
+                "debug": false
+            }
+        },
+        "lint": {
+            "executor": "@hermes/python:pylinter",
+            "options": {
+                "config": "../../tools/py-linters/.pre-commit-config.yaml",
+                "verbose": false
+            }
+        },
+        "test": {
+            "executor": "nx:run-commands",
+            "outputs": [
+                "{workspaceRoot}/dist/reports/apps/skerna-template/unittests",
+                "{workspaceRoot}/coverage/apps/skerna-template"
+            ],
+            "options": {
+                "command": "poetry run pytest tests/",
+                "cwd": "apps/skerna-template"
+            }
+        },
+        "tox": {
+            "executor": "@hermes/python:tox",
+            "outputs": [
+                "{workspaceRoot}/dist/reports/apps/skerna-template/unittests",
+                "{workspaceRoot}/dist/coverage/apps/skerna-template"
+            ],
+            "options": {
+                "silent": false,
+                "args": ""
+            }
+        }
+    },
+    "tags": []
+}

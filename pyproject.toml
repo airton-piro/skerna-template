@@ -1,0 +1,35 @@
+[tool.coverage.run]
+branch = true
+source = ["skerna_template", "tests"]
+
+[tool.coverage.report]
+exclude_lines = ['if TYPE_CHECKING:']
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-fail-under=100 --cov-report html:'build/coverage/apps/skerna-template/html' --cov-report xml:'build/coverage/apps/skerna-template/coverage.xml' --junitxml='build/reports/apps/skerna-template/unittests/junit.xml' --html='build/reports/apps/skerna-template/unittests/html/index.html' --cov-report term:skip-covered"
+pythonpath = ["skerna_template", "tests"]
+cache_dir = "build/.pytest_cache"
+
+[tool.poetry]
+name = "Your Project Name"
+version = "1.0.0"
+description = "Project Description"
+authors = ["Your Name"]
+license = 'Proprietary'
+readme = 'README.md'
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.0"
+pytest-env = "^0.6.2"
+pytest-cov = "^3.0.0"
+pytest-html = "^3.1.1"
+pytest-sugar = "^0.9.5"
+ruff = "^0.0.284"
+
+[build-system]
+requires = ["poetry-core==1.1.0"]
+build-backend = "poetry.core.masonry.api"
