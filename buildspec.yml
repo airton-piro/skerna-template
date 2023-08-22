@@ -17,6 +17,7 @@ phases:
       - python --version
       - node --version
       - poetry --version
+      - yarn --version
       - echo Building project dependencies
   post_build:
     on-failure: ABORT
