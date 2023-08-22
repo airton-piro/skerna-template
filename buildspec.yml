@@ -13,6 +13,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo Build started on `date`
+      - python --version
       - echo Building project dependencies
   post_build:
     on-failure: ABORT
