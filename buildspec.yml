@@ -18,6 +18,8 @@ phases:
       - node --version
       - poetry --version
       - yarn --version
+      - yarn install
+      - poetry run pytest
       - echo Building project dependencies
   post_build:
     on-failure: ABORT
