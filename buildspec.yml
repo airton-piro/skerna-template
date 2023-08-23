@@ -32,12 +32,12 @@ phases:
     commands:
       - echo Updating Layer Function...
       - aws --version
-      - PUBLISH_DETAIL=$(aws lambda publish-layer-version --layer-name $LAYER_NAME --description "scraper services packages for python" --zip-file fileb://packages/packages.zip --compatible-runtimes python3.9 --compatible-architectures "x86_64")
+      - PUBLISH_DETAIL=$(aws lambda publish-layer-version --layer-name prueba1 --description "scraper services packages for python" --zip-file fileb://packages/packages.zip --compatible-runtimes python3.9 --compatible-architectures "x86_64")
       - echo $PUBLISH_DETAIL
       - LAYER_VERSION_ARN=$(printf '%s\n' "$PUBLISH_DETAIL" | jq .LayerVersionArn -r)
       - echo Updating lambda Function...
-      - aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://function.zip
-      - aws lambda wait function-updated --function-name $FUNCTION_NAME
-      - aws lambda update-function-configuration --function-name $FUNCTION_NAME --layers $LAYER_VERSION_ARN
-      - aws lambda wait function-updated --function-name $FUNCTION_NAME
+      - aws lambda update-function-code --function-name prueba1f --zip-file fileb://function.zip
+      - aws lambda wait function-updated --function-name prueba1f
+      - aws lambda update-function-configuration --function-name prueba1f --layers $LAYER_VERSION_ARN
+      - aws lambda wait function-updated --function-name prueba1f
       - echo DONE - Updated lambda Function
