@@ -31,6 +31,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo Updating Layer Function...
+      - aws --version
       - PUBLISH_DETAIL=$(aws lambda publish-layer-version --layer-name $LAYER_NAME --description "scraper services packages for python" --zip-file fileb://packages/packages.zip --compatible-runtimes python3.9 --compatible-architectures "x86_64")
       - echo $PUBLISH_DETAIL
       - LAYER_VERSION_ARN=$(printf '%s\n' "$PUBLISH_DETAIL" | jq .LayerVersionArn -r)
