@@ -36,8 +36,8 @@ phases:
       - echo $PUBLISH_DETAIL
       - LAYER_VERSION_ARN=$(printf '%s\n' "$PUBLISH_DETAIL" | jq .LayerVersionArn -r)
       - echo Updating lambda Function...
-      - aws lambda update-function-code --function-name prueba1f --zip-file fileb://function.zip
-      - aws lambda wait function-updated --function-name prueba1f
-      - aws lambda update-function-configuration --function-name prueba1f --layers $LAYER_VERSION_ARN
-      - aws lambda wait function-updated --function-name prueba1f
+      - aws lambda update-function-code --function-name prueba1 --zip-file fileb://function.zip
+      - aws lambda wait function-updated --function-name prueba1
+      - aws lambda update-function-configuration --function-name prueba1 --layers $LAYER_VERSION_ARN
+      - aws lambda wait function-updated --function-name prueba1
       - echo DONE - Updated lambda Function
